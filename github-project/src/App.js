@@ -11,13 +11,23 @@ class App extends React.Component {
     console.log("CONSTRUCTOR INVOKED");
     super();
     this.state = {
-      user: userData
+      user: {}
     };
   }
 
-  // componentDidMount(){
+  componentDidMount(){
+    this.fetchUser();
+  }
 
-  // }
+  fetchUser = () => {
+    axios.get(`https://api.github.com/users/tfaramar`)
+    .then(res => {
+      this.setState({
+        user: res.data
+      })
+    })
+    .catch(error => console.log(error))
+  }
 
   render(){
     console.log("RENDER INVOKED")
